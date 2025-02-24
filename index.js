@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const connectDB = require('./mongodb/mongodb');
 const bodyParser = require('body-parser');
 const Employee = require("./models/employee_model");
 const app = express();
 app.use(bodyParser.json());
+const port = process.env.SERVER_PORT | 5000;
 
 
 // Post APi
@@ -96,7 +98,7 @@ app.put('/employee/wordDone/:id', async (req, res) => {
 connectDB();
 
 // Server Port
-app.listen('3000', () => {
-    console.log("Server is running on port 3000");
+app.listen(port, () => {
+    console.log("✔ Server is running on port "+port);
     console.log("http://localhost:3000");
 })
